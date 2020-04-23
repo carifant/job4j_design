@@ -17,7 +17,7 @@ public class JaggedArrayIteratorTest {
     @Before
     public void setUp() {
         it = new JaggedArrayIterator(new int[][]{{1}, {3, 4}, {7}});
-        it2 = new JaggedArrayIterator(new int[][]{{1}, {2, 3, 4, 5,}, {6, 7}, {8, 9, 10, 11, 12, 13, 14}});
+        it2 = new JaggedArrayIterator(new int[][]{{1}, {2, 3, 4, 5}, {6, 7}, {8, 9, 10, 11, 12, 13, 14}});
     }
 
     @Test

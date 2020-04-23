@@ -6,7 +6,12 @@
 
     <groupId>groupId</groupId>
     <artifactId>chapter_003</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>3.0</version>
+    <parent>
+        <artifactId>job4j_design</artifactId>
+        <groupId>ru.job4j</groupId>
+        <version>3.0</version>
+    </parent>
+    <packaging>pom</packaging>
 
-    
 </project>
