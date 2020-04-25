@@ -6,27 +6,31 @@ import java.util.List;
 
 
 public class JaggedArrayIterator implements Iterator {
-    List<Integer> iterator = new ArrayList<>();
-    int index = 0;
+    int[][] arr;
+    int row = 0;
+    int col = 0;
 
     public JaggedArrayIterator(int[][] x) {
-        for (int[] temp : x) {
-            for (int i : temp) {
-                iterator.add(i);
-            }
-        }
+        arr = x;
     }
 
     public boolean hasNext() {
-        return index < iterator.size();
+        boolean b = false;
+        while (row < arr.length) {
+            b = true;
+            break;
+        }
+        return b;
     }
 
     public Object next() {
-        int temp = iterator.get(index);
-        index++;
+        int temp = arr[row][col];
+        col++;
+        if (col == arr[row].length) {
+            col = 0;
+            row++;
+        }
         return temp;
     }
 
-    public void remove() {
-    }
 }
