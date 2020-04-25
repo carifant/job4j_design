@@ -1,11 +1,13 @@
 package ru.job4j.iterator;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class EvenArrayIterator implements Iterator {
     private int[] arr;
     private int index;
+    Iterator<Integer> iterator = Collections.emptyIterator();
 
     public EvenArrayIterator(int[] arr) {
         this.arr = arr;
@@ -26,18 +28,16 @@ public class EvenArrayIterator implements Iterator {
     @Override
     public Object next() {
         int temp = 0;
-        try {
-            for (int i = index; i < arr.length; i++) {
-                if (arr[i] % 2 == 0) {
-                    temp = arr[i];
-                    index++;
-                    break;
-                }
-                index++;
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("отсутствуют элементы к возврату");
+        if (index >= arr.length) {
+            throw new NoSuchElementException();
         }
-        return temp;
+        if (arr[index] % 2 == 0) {
+            temp = arr[index];
+            index++;
+            return temp;
+        } else {
+            index++;
+            return next();
+        }
     }
 }
