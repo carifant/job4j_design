@@ -47,6 +47,9 @@ core/target
 pubsub/lib_managed
 pubsub/target
 
+job4j_design/
+target
+.idea
 # eclipse specific
 .metadata
 jrebel.lic
