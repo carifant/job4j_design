@@ -1,14 +1,12 @@
 package ru.job4j.iterator;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.NoSuchElementException;
 
-
-public class JaggedArrayIterator implements Iterator {
-    int[][] arr;
-    int row = 0;
-    int col = 0;
+public class JaggedArrayIterator implements Iterator<Integer> {
+    private final int[][] arr;
+    private int row = 0;
+    private int col = 0;
 
     public JaggedArrayIterator(int[][] x) {
         arr = x;
@@ -16,21 +14,30 @@ public class JaggedArrayIterator implements Iterator {
 
     public boolean hasNext() {
         boolean b = false;
-        while (row < arr.length) {
-            b = true;
-            break;
+        for (int i = row; i < arr.length; i++) {
+            if (arr[i] != null) {
+                if (col <= arr[row].length) {
+                    b = true;
+                    break;
+                }
+            }
         }
         return b;
     }
 
-    public Object next() {
-        int temp = arr[row][col];
-        col++;
+    public Integer next() {
+        if (row >= arr.length) {
+            throw new NoSuchElementException();
+        }
         if (col == arr[row].length) {
             col = 0;
             row++;
+            return next();
         }
-        return temp;
+        if (arr[row] == null) {
+            row++;
+            return next();
+        }
+        return arr[row][col++];
     }
-
 }
