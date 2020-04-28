@@ -13,16 +13,19 @@ public class JaggedArrayIterator implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        boolean b = false;
         for (int i = row; i < arr.length; i++) {
             if (arr[i] != null) {
-                if (col <= arr[row].length) {
-                    b = true;
-                    break;
+                if (col == arr[row].length) {
+                    col = 0;
+                    row++;
+                    return hasNext();
+                }
+                if (col <= arr[i].length) {
+                    return true;
                 }
             }
         }
-        return b;
+        return false;
     }
 
     public Integer next() {

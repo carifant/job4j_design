@@ -67,7 +67,7 @@ public class JaggedArrayIteratorTest {
         assertThat(it.next(), is(4));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(7));
-        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(false));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class JaggedArrayIteratorTest {
                 {}
         };
         JaggedArrayIterator it = new JaggedArrayIterator(in);
-        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(false));
     }
 
     @Test(expected = NoSuchElementException.class)
