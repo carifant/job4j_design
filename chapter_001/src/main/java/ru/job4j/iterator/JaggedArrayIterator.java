@@ -13,34 +13,21 @@ public class JaggedArrayIterator implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        for (int i = row; i < arr.length; i++) {
-            if (arr[i] != null) {
-                if (col == arr[row].length) {
-                    col = 0;
-                    row++;
-                    return hasNext();
-                }
-                if (col <= arr[i].length) {
-                    return true;
-                }
-            }
+        while (row < arr.length && arr[row].length == 0) {
+            row++;
         }
-        return false;
+        return row < arr.length && col < arr[row].length;
     }
 
     public Integer next() {
-        if (row >= arr.length) {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
+        int temp = arr[row][col++];
         if (col == arr[row].length) {
             col = 0;
             row++;
-            return next();
         }
-        if (arr[row] == null) {
-            row++;
-            return next();
-        }
-        return arr[row][col++];
+        return temp;
     }
 }
