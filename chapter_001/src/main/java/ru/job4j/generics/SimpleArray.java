@@ -38,7 +38,7 @@ public class SimpleArray<T> implements Iterable<T> {
         return new Iterator<T>() {
             @Override
             public boolean hasNext() {
-                return currentIndex < arr.length && arr[currentIndex] != null;
+                return currentIndex < index;
             }
 
             @Override
