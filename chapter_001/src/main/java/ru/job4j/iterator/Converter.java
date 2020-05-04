@@ -20,10 +20,10 @@ public class Converter {
 
             @Override
             public Integer next() {
-                if (hasNext()) {
-                    return tempIt.next();
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
                 }
-                throw new NoSuchElementException();
+                return tempIt.next();
             }
         };
 
