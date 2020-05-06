@@ -20,13 +20,42 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public void deleteFirst() {
-
         if (head != null) {
             head = head.next;
         } else {
             throw new NoSuchElementException();
         }
     }
+
+    public T get() {
+        Node<T> tail = new Node<>(null, null);
+        if (head != null) {
+            tail = head;
+        }
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+        return tail.value;
+    }
+
+    public void deleteLast() {
+        Node<T> tail;
+        int count = 0;
+        if (head != null) {
+            tail = head;
+            while (tail.next != null) {
+                tail = tail.next;
+                count++; // ввел переменную счётчик, чтобы понять сколько элементов в стеке
+            }
+            Node<T> temp;
+            temp = head;
+            for (int i = 0; i < count - 1; i++) { // ждём препоследнего элемента и удаляем его ссылку на последний элемент в стеке
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
+    }
+
 
     @Override
     public Iterator<T> iterator() {
