@@ -22,6 +22,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         lstNode = new Node<E>(null, prev, null);
         prev.setNextElement(lstNode);
         size++;
+        modCount++;
     }
 
     public E get(int index) {
