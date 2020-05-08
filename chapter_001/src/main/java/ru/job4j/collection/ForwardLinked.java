@@ -27,7 +27,7 @@ public class ForwardLinked<T> implements Iterable<T> {
         ForwardLinked<T> temp = new ForwardLinked();
         int i = 0;
         int index = size;
-        while(i < index) {
+        while (i < index) {
             temp.add(this.deleteLast());
             i++;
         }
