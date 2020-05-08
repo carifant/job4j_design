@@ -29,7 +29,7 @@ public final class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.add(indexOf(id), model);
+        mem.add(index, model);
         return true;
     }
 
@@ -39,7 +39,7 @@ public final class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.remove(indexOf(id));
+        mem.remove(index);
         return true;
     }
 
