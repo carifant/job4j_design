@@ -9,8 +9,6 @@ public class SimpleQueue<T> {
     int size = 0;
 
     public T poll() {
-        SimpleStack<T> x = in;
-        SimpleStack<T> temp = in;
         int i = 0;
         while (i < size) {
             T t = in.pop();
