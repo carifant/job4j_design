@@ -42,4 +42,8 @@ public class User {
                 Objects.equals(name, user.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children);
+    }
 }
