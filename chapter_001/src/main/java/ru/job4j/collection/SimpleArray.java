@@ -8,7 +8,6 @@ public class SimpleArray<T> implements Iterable<T> {
     private int index;
     private Object[] arr = new Object[10];
 
-
     public void add(T model) {
         if (index >= arr.length) {
             arr = Arrays.copyOf(arr, arr.length * 2 + 1);
@@ -16,10 +15,11 @@ public class SimpleArray<T> implements Iterable<T> {
         arr[index++] = model;
         modCount++;
     }
+
     public boolean contains(T model) {
         for (int i = 0; i < index; i++) {
-            if(arr[i].equals(model)) {
-                return  true;
+            if (arr[i].equals(model)) {
+                return true;
             }
         }
         return false;
@@ -34,6 +34,7 @@ public class SimpleArray<T> implements Iterable<T> {
         index--;
         System.arraycopy(arr, i + 1, arr, i, index - i);
         arr[arr.length - 1] = null;
+        modCount++;
     }
 
     public T get(int position) {
