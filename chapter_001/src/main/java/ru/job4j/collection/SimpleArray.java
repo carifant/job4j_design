@@ -7,7 +7,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private int modCount;
     private int index;
     private Object[] arr = new Object[10];
-    Object[] newArr;
+
 
     public void add(T model) {
         if (index >= arr.length) {
@@ -15,6 +15,14 @@ public class SimpleArray<T> implements Iterable<T> {
         }
         arr[index++] = model;
         modCount++;
+    }
+    public boolean contains(T model) {
+        for (int i = 0; i < index; i++) {
+            if(arr[i].equals(model)) {
+                return  true;
+            }
+        }
+        return false;
     }
 
     public void set(int i, T model) {
