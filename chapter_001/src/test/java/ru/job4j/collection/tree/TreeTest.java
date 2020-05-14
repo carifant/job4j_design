@@ -1,6 +1,7 @@
 package ru.job4j.collection.tree;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -28,5 +29,15 @@ public class TreeTest {
                 tree.findBy(7).isPresent(),
                 is(false)
         );
+    }
+
+    @Test
+    public void wheHasThreeElmentNotBinaryTree() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
+        boolean expected = false;
+        assertThat((expected), is(tree.isBinary()));
     }
 }
