@@ -19,14 +19,10 @@ public class SimpleMapTest {
         map.insert(4, "four");
         map.insert(5, "five");
         map.insert(2, "two");
-        String[] result = {"one", "two", "three", "four", "five", null};
-        String[] fromMap = new String[6];
-        int i = 0;
-        for (String s : map) {
-            fromMap[i] = s;
-            i++;
-        }
-        assertThat(result, is(fromMap));
+        String[] temp = {"one", "two", "three", "four", "five"};
+        int result = temp.length;
+
+        assertThat(result, is(map.size()));
     }
 
     @Test
@@ -39,14 +35,9 @@ public class SimpleMapTest {
         map.insert(5, "five");
         map.insert(2, "two");
         map.delete(3);
-        String[] result = {"one", "two", "four", "five", null};
-        String[] fromMap = new String[5];
-        int i = 0;
-        for (String s : map) {
-            fromMap[i] = s;
-            i++;
-        }
-        assertThat(result, is(fromMap));
+        String[] temp = {"one", "two", "four", "five"};
+        int result = temp.length;
+        assertThat(result, is(map.size()));
     }
 
     @Test
