@@ -9,23 +9,19 @@ public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
         Info info = new Info(0, 0, 0);
-        Map<Integer, User> previousMap = new HashMap<>();
-        for (User user : previous) {
-            previousMap.put(user.id, user);
+        Map<Integer, User> currentMap = new HashMap<>();
+        for (User user : current) {
+            currentMap.put(user.id, user);
         }
-
-        for (int l = 0; l < current.size(); l++) {
-            if (previousMap.containsKey(current.get(l).id)) {
-                if (!previousMap.get(current.get(l).id).name.equals(current.get(l).name)) {
-                    info.changed++;
-                }
+        for (int l = 0; l < previous.size(); l++) {
+            if (!currentMap.containsKey(previous.get(l).id)) {
+                info.deleted++;
             }
-            previousMap.remove(current.get(l).id);
+            if (currentMap.containsKey(previous.get(l).id) && !currentMap.get(previous.get(l).id).name.equals(previous.get(l).name)) {
+                info.changed++;
+            }
         }
-        info.deleted = previousMap.size();
-
-        int i1 = previous.size() - info.deleted;
-        info.added = current.size() - i1;
+        info.added = current.size() - (previous.size() - info.deleted);
         return info;
     }
 
