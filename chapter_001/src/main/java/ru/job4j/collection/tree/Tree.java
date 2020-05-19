@@ -44,7 +44,7 @@ class Tree<E> implements SimpleTree<E> {
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.children.size() >= 2) {
+            if (el.children.size() > 2) {
                 return false;
             }
         }
