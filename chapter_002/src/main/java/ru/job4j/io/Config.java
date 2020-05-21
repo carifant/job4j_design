@@ -19,7 +19,7 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             String s = read.readLine();
             while(s != null) {
-                if(s.length() == 0 || s.contains("/*") || s.contains("*/")) {
+                if(s.length() == 0 || s.contains("#")) {
                     s = read.readLine();
                     continue;
                 }
