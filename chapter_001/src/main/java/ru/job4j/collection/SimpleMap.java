@@ -6,13 +6,13 @@ public class SimpleMap<K, V> implements Iterable<V> {
 
     NodeForMap<K, V>[] table;
     private int size;
-    private float loadFactor;
+    private final float loadFactor;
     private int modCount;
 
 
     public SimpleMap() {
         table = new NodeForMap[5];
-        loadFactor = table.length * 0.75f;
+        loadFactor = 0.75f;
     }
 
     private int position(K key) {
@@ -28,13 +28,15 @@ public class SimpleMap<K, V> implements Iterable<V> {
     }
 
     boolean insert(K key, V value) {
-        int i = position(key);
-        if (size + 1 >= loadFactor) {
-            loadFactor = loadFactor * 2;
+
+        if (size >= table.length * loadFactor) {
             arrayDoubling();
         }
-        if (table[i] != null) {
-            return false;
+        int i = position(key);
+        if (table[i] != null && table[i].getKey().equals(key)) {
+            table[i].setValue(value);
+            modCount++;
+            return true;
         }
         table[i] = new NodeForMap<K, V>(i, key, value);
         size++;
@@ -46,7 +48,6 @@ public class SimpleMap<K, V> implements Iterable<V> {
         NodeForMap<K, V>[] oldTable = table;
         table = new NodeForMap[oldTable.length * 2];
         size = 0;
-        modCount = 0;
         for (NodeForMap<K, V> n : oldTable) {
             if (n != null) {
                 insert(n.getKey(), n.getValue());
@@ -72,15 +73,11 @@ public class SimpleMap<K, V> implements Iterable<V> {
         if (table[i] == null) {
             return false;
         }
-        if (table.length == 1) {
-            table = null;
-            size--;
-            return true;
-        }
         NodeForMap<K, V> n = table[i];
         if (key.equals(n.getKey())) {
             table[i] = null;
             size--;
+            modCount++;
             return true;
         }
         return false;
@@ -91,13 +88,13 @@ public class SimpleMap<K, V> implements Iterable<V> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SimpleMap<?, ?> simpleMap = (SimpleMap<?, ?>) o;
-        return size == simpleMap.size &&
+        return Float.compare(simpleMap.loadFactor, loadFactor) == 0 &&
                 Arrays.equals(table, simpleMap.table);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(size);
+        int result = Objects.hash(loadFactor);
         result = 31 * result + Arrays.hashCode(table);
         return result;
     }
