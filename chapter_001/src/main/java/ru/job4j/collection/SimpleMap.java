@@ -85,11 +85,14 @@ public class SimpleMap<K, V> implements Iterable<V> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleMap<?, ?> simpleMap = (SimpleMap<?, ?>) o;
-        return Float.compare(simpleMap.loadFactor, loadFactor) == 0 &&
-                Arrays.equals(table, simpleMap.table);
+        return Float.compare(simpleMap.loadFactor, loadFactor) == 0 && Arrays.equals(table, simpleMap.table);
     }
 
     @Override

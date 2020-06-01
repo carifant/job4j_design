@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class SimpleSetTest {
 
     @Test
-    public void WhenAddForeElementsGetThreeElements() {
+    public void whenAddForeElementsGetThreeElements() {
         SimpleSet<String> set = new SimpleSet<>();
         set.add("one");
         set.add("two");

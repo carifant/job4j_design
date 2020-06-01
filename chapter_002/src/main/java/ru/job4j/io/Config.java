@@ -18,8 +18,8 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             String s = read.readLine();
-            while(s != null) {
-                if(s.length() == 0 || s.contains("#")) {
+            while (s != null) {
+                if (s.length() == 0 || s.contains("#")) {
                     s = read.readLine();
                     continue;
                 }
@@ -38,13 +38,13 @@ public class Config {
 
     @Override
     public String toString() {
-            StringJoiner out = new StringJoiner(System.lineSeparator());
-            try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-                read.lines().forEach(out::add);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return out.toString();
+        StringJoiner out = new StringJoiner(System.lineSeparator());
+        try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
+            read.lines().forEach(out::add);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return out.toString();
+    }
 }
 

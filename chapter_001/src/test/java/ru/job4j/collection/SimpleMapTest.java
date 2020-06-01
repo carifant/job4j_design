@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class SimpleMapTest {
 
     @Test
-    public void WhenWeCreateMap() {
+    public void whenWeCreateMap() {
         SimpleMap<Integer, String> map = new SimpleMap<>();
         map.insert(1, "one");
         map.insert(2, "two");
@@ -26,7 +26,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void WhenWeCreateMapAndDelite() {
+    public void whenWeCreateMapAndDelite() {
         SimpleMap<Integer, String> map = new SimpleMap<>();
         map.insert(1, "one");
         map.insert(2, "two");
@@ -41,7 +41,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void WhenWeCreateMapAndGet() {
+    public void whenWeCreateMapAndGet() {
         SimpleMap<Integer, String> map = new SimpleMap<>();
         map.insert(1, "one");
         map.insert(2, "two");

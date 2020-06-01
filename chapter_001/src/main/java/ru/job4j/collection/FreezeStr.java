@@ -19,16 +19,16 @@ public class FreezeStr {
 
     public static boolean eq2(String left, String right) {
         Map<Character, Integer> letters = new HashMap<>();
-        char[] s_array = left.toCharArray();
-        for (char c : s_array) {
+        char[] sArray = left.toCharArray();
+        for (char c : sArray) {
             if (letters.containsKey(c)) {
                 letters.put(c, letters.get(c) + 1);
             } else {
                 letters.put(c, 1);
             }
         }
-        char[] s_array2 = right.toCharArray();
-        for (char c : s_array2) {
+        char[] sArray2 = right.toCharArray();
+        for (char c : sArray2) {
             if (letters.containsKey(c)) {
                 letters.put(c, letters.get(c) - 1);
                 if (letters.get(c) < 0) {

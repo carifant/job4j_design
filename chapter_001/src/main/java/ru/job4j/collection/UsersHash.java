@@ -13,8 +13,8 @@ public class UsersHash {
         user2.setName("Helen");
         user2.setChildren(2);
 
-        Map<User,Object> map = new HashMap<>();
-        map.put(user,new Object());
+        Map<User, Object> map = new HashMap<>();
+        map.put(user, new Object());
         map.put(user2, new Object());
 
         System.out.println(map);
