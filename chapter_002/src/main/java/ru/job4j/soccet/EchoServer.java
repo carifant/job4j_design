@@ -22,16 +22,15 @@ public class EchoServer {
                             b = false;
                             break;
                         } else if (str.contains("?msg=Hello")) {
-                            System.out.println("Hello");
+                            out.write("Hello\r\n\r\n".getBytes());
                         } else {
                             String[] temp = str.split("[= ]");
                             if (temp.length > 2) {
-                                System.out.println(temp[2]);
+                                out.write(temp[2].getBytes());
                             }
                         }
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    out.write("Hello, dear friend.".getBytes());
+
                 }
             }
         }
