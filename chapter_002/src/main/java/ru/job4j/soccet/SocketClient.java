@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class SocketClient {
     public static void main(String[] args) throws IOException {
-        try(Socket socket = new Socket()) {
-        socket.connect(new InetSocketAddress(InetAddress.getLocalHost(),8189),2000);
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(InetAddress.getLocalHost(), 8189), 2000);
             Scanner scanner = new Scanner(socket.getInputStream());
             while (scanner.hasNext()) {
                 System.out.println(scanner.nextLine());

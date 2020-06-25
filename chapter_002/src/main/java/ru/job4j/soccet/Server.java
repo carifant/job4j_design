@@ -13,10 +13,10 @@ public class Server {
              Socket socket = serverSocket.accept()) {
             System.out.println("клиент подключился");
             Scanner scanner = new Scanner(socket.getInputStream());
-            PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
-            while(true) {
+            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+            while (true) {
                 String temp = scanner.nextLine();
-                if( temp.equals("exit")) {
+                if (temp.equals("exit")) {
                     break;
                 }
                 writer.println(temp + " answer");
