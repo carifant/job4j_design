@@ -16,12 +16,13 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
-                    while (!(str = in.readLine()).isEmpty()) {
-                        if (str.contains("?msg=Exit")) {
+                    String str = in.readLine();
+                    while (!str.isEmpty()) {
+                        System.out.println(str);
+                        if (str.contains("Exit")) {
                             b = false;
                             break;
-                        } else if (str.contains("?msg=Hello")) {
+                        } else if (str.contains("Hello")) {
                             out.write("Hello\r\n\r\n".getBytes());
                         } else {
                             String[] temp = str.split("[= ]");
@@ -29,6 +30,7 @@ public class EchoServer {
                                 out.write(temp[2].getBytes());
                             }
                         }
+                        str = in.readLine();
                     }
 
                 }
