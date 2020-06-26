@@ -5,6 +5,7 @@
 *.swp
 *.out
 *.log
+*.iml
 
 # rails specific
 *.sqlite3
@@ -26,6 +27,7 @@ build/*
 *.perspective
 *.perspectivev3
 *~.nib
+*.iml
 
 # akka specific
 logs/*
@@ -56,6 +58,7 @@ jrebel.lic
 .settings
 .classpath
 .project
+*.iml
 
 .ensime*
 *.sublime-*
