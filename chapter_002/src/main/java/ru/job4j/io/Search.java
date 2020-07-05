@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,7 +17,7 @@ public class Search {
         search(start, args[1]).forEach(System.out::println);
     }
 
-    public static List<Path> search(Path root, String ext) {
+    public static List<File> search(Path root, String ext) {
         SearchFiles sf = new SearchFiles(ext);
         try {
             Files.walkFileTree(root, sf);

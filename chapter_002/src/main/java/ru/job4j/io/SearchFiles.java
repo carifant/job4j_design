@@ -11,33 +11,20 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 import static java.nio.file.FileVisitResult.TERMINATE;
 
 public class SearchFiles extends SimpleFileVisitor<Path> {
-    List<Path> list = new ArrayList<>();
-    private PathMatcher matcher;
+    List<File> list = new ArrayList<>();
+    String ext;
 
-    public SearchFiles(String pattern) {
-        try {
-            matcher = FileSystems.getDefault().getPathMatcher(pattern);
-        } catch (IllegalArgumentException iae) {
-            System.err.println("Invalid pattern; did you forget to prefix \"glob:\" or \"regex:\"?");
-            System.exit(1);
-        }
+    public SearchFiles(String ext) {
+        this.ext = ext;
     }
 
     public FileVisitResult visitFile(Path path, BasicFileAttributes fileAttributes) {
-        find(path);
-        return FileVisitResult.CONTINUE;
-    }
-
-    private void find(Path path) {
-        Path name = path.getFileName();
-        if (matcher.matches(name)) {
-            list.add(path);
+        if (path.getFileName().toString().contains(ext)) {
+            list.add(path.toFile());
         }
-    }
-
-    public FileVisitResult preVisitDirectory(Path path, BasicFileAttributes fileAttributes) {
-        find(path);
         return FileVisitResult.CONTINUE;
     }
+
+
 }
 
