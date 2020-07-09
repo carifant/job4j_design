@@ -10,41 +10,36 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
 
-    public List<File> getListOfFiles(String path, List<String> ext) {
-        List<File> rsl = new ArrayList();
-        File file = new File(path);
-        Queue<File> data = new LinkedList<>();
-        data.offer(file);
-        while (!data.isEmpty()) {
-            File el = data.poll();
-            if (!el.isDirectory()) {
-                String name = el.getName();
-                if (name.contains(".")) {
-                    if (!ext.contains(name.substring(name.indexOf(".")))) {
-                        rsl.add(el);
-                    }
-                }
-            } else {
-                for (File child : el.listFiles()) {
-                    data.offer(child);
-                }
-            }
-        }
-        return rsl;
+    private static List<Path> getListOfFiles(ArgZip argZip) throws IOException {
+        SearchFiles searcher = new SearchFiles(p -> !p.toFile().getName().endsWith(argZip.exclude()));
+        Files.walkFileTree(Path.of(argZip.directory()), searcher);
+        return searcher.getPath();
     }
 
-    public void packFiles(List<File> sources, File target) {
+    public void packFiles(List<Path> sources, File target) {
+        List<File> list = new ArrayList<>();
         for (int i = 0; i < sources.size(); i++) {
+            list.add(sources.get(i).toFile());
             try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-                zip.putNextEntry(new ZipEntry(sources.get(i).getPath()));
-                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(target))) {
+                zip.putNextEntry(new ZipEntry(list.get(i).getName()));
+                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(list.get(i)))) {
                     zip.write(out.readAllBytes());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+//        for (int i = 0; i < sources.size(); i++) {
+//            try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target,false)))) {
+//                zip.putNextEntry(new ZipEntry(sources.get(i).toFile().getAbsolutePath()));
+//                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(sources.get(i).toFile().getPath()))) {
+//                    zip.write(out.readAllBytes());
+//                    System.out.println();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
-        System.out.println("Архивация прошла успешно");
+        //System.out.println("Архивация прошла успешно");
     }
 
 
@@ -61,8 +56,13 @@ public class Zip {
 
     public static void main(String[] args) {
         ArgZip argZip = new ArgZip(args);
-        List<File> listOfFiles = new Zip().getListOfFiles(argZip.directory(), argZip.exclude());
-        new Zip().packFiles(listOfFiles, new File(argZip.output()));
+        List<Path> listOfPath = null;
+        try {
+            listOfPath = new Zip().getListOfFiles(argZip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        new Zip().packFiles(listOfPath, new File(argZip.output()));
 
     }
 }

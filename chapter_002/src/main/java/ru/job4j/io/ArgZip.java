@@ -6,7 +6,7 @@ import java.util.List;
 public class ArgZip {
 
     private final String[] args;
-    List<String> ext = new ArrayList<>();
+
     public ArgZip(String[] args) {
         this.args = args;
     }
@@ -18,32 +18,32 @@ public class ArgZip {
         return true;
     }
 
-    public List<String> exclude() {
-        String temp;
+    public String exclude() {
+        String temp = null;
         for (String x : args) {
             if (x.contains("-e=")) {
                 temp = x.substring(3);
-                ext.add(temp);
-            }
-        }
-        if (ext.size() == 0) {
-            throw new IllegalArgumentException("Exclude folder is null.");
-        }
-        return ext;
-    }
-
-    public String directory() {
-        String directory = null;
-        for (String x : args) {
-            if (x.contains("-d=")) {
-                directory = x.substring(3);
                 break;
             }
         }
-        if (directory == null) {
+        if (temp == null) {
+            throw new IllegalArgumentException("Exclude folder is null.");
+        }return temp;
+    }
+
+
+    public String directory() {
+        String dir = null;
+        for (String x : args) {
+            if (x.contains("-d=")) {
+                dir = x.substring(3);
+                break;
+            }
+        }
+        if (dir == null) {
             throw new IllegalArgumentException("Directory folder is null.");
         }
-        return directory;
+        return dir;
     }
 
     public String output() {
