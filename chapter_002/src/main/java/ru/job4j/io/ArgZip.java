@@ -28,7 +28,8 @@ public class ArgZip {
         }
         if (temp == null) {
             throw new IllegalArgumentException("Exclude folder is null.");
-        }return temp;
+        }
+        return temp;
     }
 
 

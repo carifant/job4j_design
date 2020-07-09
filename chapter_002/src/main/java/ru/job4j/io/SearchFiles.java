@@ -16,7 +16,7 @@ public class SearchFiles extends SimpleFileVisitor<Path> {
     }
 
     public FileVisitResult visitFile(Path path, BasicFileAttributes fileAttributes) {
-        if(condition.test(path)) {
+        if (condition.test(path)) {
             this.path.add(path);
         }
         return FileVisitResult.CONTINUE;
