@@ -32,7 +32,6 @@ public class ArgZip {
         return temp;
     }
 
-
     public String directory() {
         String dir = null;
         for (String x : args) {
