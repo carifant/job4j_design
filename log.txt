@@ -1,10 +1,45 @@
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:18 +0300] "GET /items/ajax.html HTTP/1.1" 404 1113
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /TrackStudio HTTP/1.1" 302 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /TrackStudio/ HTTP/1.1" 404 1110
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:34 +0300] "GET /TrackStudioNew/ HTTP/1.1" 404 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:48 +0300] "GET / HTTP/1.1" 200 11488
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /tomcat.png HTTP/1.1" 200 5103
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /tomcat.css HTTP/1.1" 200 5931
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-nav.png HTTP/1.1" 200 1401
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-button.png HTTP/1.1" 200 713
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-middle.png HTTP/1.1" 200 1918
+Найден следующий файл - index
+Найден следующий файл - exclude
+Найден следующий файл - pack-08d98c68fbe560180c224940be21c5a911680c5f.idx
+Найден следующий файл - checkstyle-idea.xml
+Найден следующий файл - compiler.xml
+Найден следующий файл - encodings.xml
+Найден следующий файл - Maven__junit_junit_4_12.xml
+Найден следующий файл - Maven__log4j_log4j_1_2_17.xml
+Найден следующий файл - Maven__org_hamcrest_hamcrest_core_1_3.xml
+Найден следующий файл - Maven__org_slf4j_slf4j_api_1_7_30.xml
+Найден следующий файл - Maven__org_slf4j_slf4j_log4j12_1_7_30.xml
+Найден следующий файл - misc.xml
+Найден следующий файл - modules.xml
+Найден следующий файл - uiDesigner.xml
+Найден следующий файл - vcs.xml
+Найден следующий файл - workspace.xml
+Найден следующий файл - 404.txt
+Найден следующий файл - pom.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - pom.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - pom.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - pom.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - pom.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - checkstyle.xml
+Найден следующий файл - even.txt
+Найден следующий файл - file.txt
+Найден следующий файл - input.txt
+Найден следующий файл - log.txt
+Найден следующий файл - pom.xml
+Найден следующий файл - result.txt
+Найден следующий файл - site.xml
+Найден следующий файл - checkstyle-checker.xml
+Найден следующий файл - checkstyle-result.xml
+Найден следующий файл - ru.job4j.AppTest.txt
+Найден следующий файл - TEST-ru.job4j.AppTest.xml
+Найден следующий файл - text.txt

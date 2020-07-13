@@ -9,8 +9,8 @@ public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
-        String log4jConfPath = "C:\\projects\\job4j_design\\chapter_002\\src\\main\\resources\\log4j.properties";
-        PropertyConfigurator.configure(log4jConfPath);
+      //  String log4jConfPath = "C:\\projects\\job4j_design\\chapter_002\\src\\main\\resources\\log4j.properties";
+      //  PropertyConfigurator.configure(log4jConfPath);
         try {
             throw new Exception("Not supported code");
         } catch (Exception e) {
