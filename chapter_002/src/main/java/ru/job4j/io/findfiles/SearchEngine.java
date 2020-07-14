@@ -1,36 +1,55 @@
 package ru.job4j.io.findfiles;
 
 import java.io.*;
-import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class SearchEngine {
+    File target = null;
 
-    public static List<Path> getListOfFiles(ValidArg arg) throws IOException {
-        List<Path> result = new ArrayList<>();
-        if (arg.include().startsWith("1")) {
-            String temp = arg.include().substring(1);
-            Pattern pattern = Pattern.compile(temp, Pattern.CASE_INSENSITIVE);
-            Stream<Path> filesStream = Files.walk(Paths.get(arg.directory()));
-            {
-                filesStream.filter(path -> pattern.matcher(path.getFileName().toString()).find()).forEach(result::add);
-                return result;
+    public File getFile(String root, String ext, ValidArg arg) {
+        Queue<File> data = new LinkedList<>();
+        File file = new File(root);
+        data.offer(file);
+        while (!data.isEmpty()) {
+            File el = data.poll();
+            if (el.isDirectory()) {
+                for (File listFile : Objects.requireNonNull(el.listFiles())) {
+                    data.offer(listFile);
+                }
             }
-        } else {
-            SearchFiles searcher = new SearchFiles(p -> p.toFile().getName().contains(arg.include()));
-            Files.walkFileTree(Path.of(arg.directory()), searcher);
-            return searcher.getPath();
+            if (el.isFile()) {
+                searchByCriteria(el, ext, arg);
+                if (target != null) {
+                    break;
+                }
+            }
+        }
+        return target;
+    }
+
+    public void searchByCriteria(File el, String ext, ValidArg arg) {
+        String f = arg.getByName();
+        String m = arg.getByMask();
+        String r = arg.getByRegexp();
+        String cutExt = ext.replace("*", "");
+        if (f != null && ext.equals(el.getName())) {
+            target = el;
+        } else if (m != null && el.getName().endsWith(cutExt)) {
+            target = el;
+        } else if (r != null) {
+            Pattern pattern = Pattern.compile(ext);
+            Matcher exc = pattern.matcher(el.getName());
+            if (exc.matches()) {
+                target = el;
+            }
         }
     }
 
-    public static void writerOfResult(ValidArg arg, List<Path> pathes) {
-        try (FileWriter fw = new FileWriter(arg.output())) {
-            for (Path p : pathes) {
-                fw.write("Найден следующий файл - " + p.getFileName() + System.lineSeparator());
-            }
+    public static void writerOfResult(ValidArg arg, File target) {
+        try (FileWriter fw = new FileWriter(arg.getOutput())) {
+            fw.write("Найден следующий файл - " + target.getName() + System.lineSeparator());
         } catch (IOException e) {
             e.printStackTrace();
         }
